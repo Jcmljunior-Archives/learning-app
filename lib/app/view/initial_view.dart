@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../controller/counter_controller.dart';
 import '../component/button_component.dart';
+import '../component/dialog_component.dart';
 
 class InitialView extends StatefulWidget {
   const InitialView({Key? key}) : super(key: key);
@@ -31,6 +32,28 @@ class InitialViewState extends State<InitialView> {
       appBar: AppBar(
         title: const Text('Learning App'),
         centerTitle: true,
+        actions: <Widget>[
+          PopupMenuButton(
+            position: PopupMenuPosition.under,
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                onTap: null,
+                child: Row(
+                  children: const <Widget>[
+                    Icon(
+                      Icons.settings,
+                      color: Colors.black,
+                    ),
+                    SizedBox(
+                      width: 6,
+                    ),
+                    Text("Setting"),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
         // backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Center(
@@ -62,6 +85,15 @@ class InitialViewState extends State<InitialView> {
                   onPressed: decrement,
                   child: const Text('Decrement'),
                 ),
+              ],
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                DialogComponent(),
               ],
             )
           ],

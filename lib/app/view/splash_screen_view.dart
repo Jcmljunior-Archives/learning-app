@@ -21,6 +21,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -31,11 +32,17 @@ class _SplashScreenViewState extends State<SplashScreenView> {
               Icon(
                 Icons.hourglass_bottom,
                 size: 42,
+                color: Colors.white,
               ),
               SizedBox(
                 height: 12,
               ),
-              Text('Loading...')
+              Text(
+                'Loading...',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             ],
           )
         ],
