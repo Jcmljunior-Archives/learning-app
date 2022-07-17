@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../bootstrap.dart';
 import '../model/splash_screen_model.dart';
 
 class SplashScreenView extends StatefulWidget {
@@ -28,16 +29,21 @@ class _SplashScreenViewState extends State<SplashScreenView> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
+            children: <Widget>[
               Icon(
                 Icons.hourglass_bottom,
                 size: 42,
-                color: Colors.white,
+                color: context
+                            .findAncestorStateOfType<BootstrapState>()
+                            ?.getUseLightMode() ==
+                        true
+                    ? Colors.white
+                    : Colors.black,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
-              Text(
+              const Text(
                 'Loading...',
                 style: TextStyle(
                   color: Colors.white,

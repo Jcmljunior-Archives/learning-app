@@ -24,6 +24,10 @@ class BootstrapState extends State<Bootstrap> {
     );
   }
 
+  bool getUseLightMode() {
+    return _controller.splashScreenModel.useLightMode;
+  }
+
   void updateTheme(int colorIndex, bool useMaterial3, bool useLightMode) {
     setState(() {
       _controller.splashScreenModel.themeData = _controller.splashScreenModel
