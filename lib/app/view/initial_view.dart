@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning_app/app/bootstrap.dart';
+
+import '../bootstrap.dart';
 
 class InitialView extends StatefulWidget {
   const InitialView({Key? key}) : super(key: key);

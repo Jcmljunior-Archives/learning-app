@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning_app/app/controller/bootstrap_controller.dart';
 
+import 'controller/bootstrap_controller.dart';
 import 'view/splash_screen_view.dart';
 import 'view/initial_view.dart';
 
@@ -49,10 +49,7 @@ class BootstrapState extends State<Bootstrap> {
     });
   }
 
-  /*
-   * Retorna as rotas da aplicação.
-   */
-  Map<String, WidgetBuilder> getAllRoutes() {
+  Map<String, WidgetBuilder> _getAllRoutes() {
     return <String, WidgetBuilder>{
       '/': (BuildContext context) => const SplashScreenView(),
       '/initial': (BuildContext context) => const InitialView(),
@@ -68,7 +65,7 @@ class BootstrapState extends State<Bootstrap> {
           : ThemeMode.dark,
       theme: _controller.splashScreenModel.themeData,
       initialRoute: '/',
-      routes: getAllRoutes(),
+      routes: _getAllRoutes(),
     );
   }
 }
