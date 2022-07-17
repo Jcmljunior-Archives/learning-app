@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../controller/counter_controller.dart';
-import '../component/button_component.dart';
-import '../component/dialog_component.dart';
+import 'package:learning_app/app/bootstrap.dart';
 
 class InitialView extends StatefulWidget {
   const InitialView({Key? key}) : super(key: key);
@@ -12,94 +9,39 @@ class InitialView extends StatefulWidget {
 }
 
 class InitialViewState extends State<InitialView> {
-  final CounterController _controller = CounterController();
-
-  void increment() {
-    setState(() {
-      _controller.counter.increment();
-    });
-  }
-
-  void decrement() {
-    setState(() {
-      _controller.counter.decrement();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Learning App'),
-        centerTitle: true,
-        actions: <Widget>[
-          PopupMenuButton(
-            position: PopupMenuPosition.under,
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                onTap: null,
-                child: Row(
-                  children: const <Widget>[
-                    Icon(
-                      Icons.settings,
-                      color: Colors.black,
-                    ),
-                    SizedBox(
-                      width: 6,
-                    ),
-                    Text("Setting"),
-                  ],
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text('You have pushed the button this many times:'),
+              const Text(
+                '0',
+                style: TextStyle(
+                  fontSize: 24,
                 ),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  context
+                      .findAncestorStateOfType<BootstrapState>()
+                      ?.handleBrightnessChange();
+                },
+                child: const Text('Change Theme'),
               ),
             ],
           ),
         ],
-        // backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '${_controller.counter.count}',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                OutlinedButton(
-                  onPressed: increment,
-                  child: const Text('Increment'),
-                ),
-                const SizedBox(
-                  width: 6,
-                ),
-                OutlinedButton(
-                  onPressed: decrement,
-                  child: const Text('Decrement'),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
-                DialogComponent(),
-              ],
-            )
-          ],
-        ),
-      ),
-      floatingActionButton: const ButtonComponent(),
     );
   }
 }
