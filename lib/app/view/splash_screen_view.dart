@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../controller/splash_screen_controller.dart';
 import '../bootstrap.dart';
-import '../model/splash_screen_model.dart';
 
 class SplashScreenView extends StatefulWidget {
   const SplashScreenView({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class SplashScreenView extends StatefulWidget {
 }
 
 class _SplashScreenViewState extends State<SplashScreenView> {
-  final SplashScreenModel _controller = SplashScreenModel();
+  final SplashScreenController _controller = SplashScreenController();
 
   @override
   void initState() {

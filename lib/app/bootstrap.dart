@@ -18,38 +18,38 @@ class BootstrapState extends State<Bootstrap> {
   initState() {
     super.initState();
     updateTheme(
-      _controller.splashScreenModel.colorSelected,
-      _controller.splashScreenModel.useMaterial3,
-      _controller.splashScreenModel.useLightMode,
+      _controller.colorSelected,
+      _controller.useMaterial3,
+      _controller.useLightMode,
     );
   }
 
   bool getUseLightMode() {
-    return _controller.splashScreenModel.useLightMode;
+    return _controller.useLightMode;
   }
 
   void updateTheme(int colorIndex, bool useMaterial3, bool useLightMode) {
     setState(() {
-      _controller.splashScreenModel.themeData = _controller.splashScreenModel
-          .updateTheme(colorIndex, useMaterial3, useLightMode);
+      _controller.themeData =
+          _controller.updateTheme(colorIndex, useMaterial3, useLightMode);
     });
   }
 
   void handleBrightnessChange() {
     setState(() {
-      _controller.splashScreenModel.handleBrightnessChange();
+      _controller.handleBrightnessChange();
     });
   }
 
   void handleMaterialVersionChange() {
     setState(() {
-      _controller.splashScreenModel.handleMaterialVersionChange();
+      _controller.handleMaterialVersionChange();
     });
   }
 
   void handleColorSelect(int value) {
     setState(() {
-      _controller.splashScreenModel.handleColorSelect(value);
+      _controller.handleColorSelect(value);
     });
   }
 
@@ -64,10 +64,8 @@ class BootstrapState extends State<Bootstrap> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      themeMode: _controller.splashScreenModel.useLightMode
-          ? ThemeMode.light
-          : ThemeMode.dark,
-      theme: _controller.splashScreenModel.themeData,
+      themeMode: _controller.useLightMode ? ThemeMode.light : ThemeMode.dark,
+      theme: _controller.themeData,
       initialRoute: '/',
       routes: _getAllRoutes(),
     );

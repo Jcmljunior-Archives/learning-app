@@ -1,12 +1,8 @@
-import '../model/splash_screen_model.dart';
+import 'package:flutter/material.dart';
 
 class SplashScreenController {
-  static final SplashScreenController _controller =
-      SplashScreenController._internal();
-
-  factory SplashScreenController() => _controller;
-
-  SplashScreenController._internal();
-
-  SplashScreenModel splashScreenModel = SplashScreenModel();
+  Future<void> pushReplecement(context) async {
+    await Future.delayed(const Duration(seconds: 3));
+    Navigator.of(context).pushReplacementNamed('/initial');
+  }
 }

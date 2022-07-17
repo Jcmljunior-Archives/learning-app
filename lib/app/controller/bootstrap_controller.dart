@@ -1,13 +1,35 @@
-import '../model/bootstrap_model.dart';
+import 'package:flutter/material.dart';
+import 'package:learning_app/app/model/palette_model.dart';
 
 class BootstrapController {
-  static final BootstrapController _controller =
-      BootstrapController._internal();
+  bool useMaterial3 = true;
+  bool useLightMode = true;
+  int colorSelected = 0;
 
-  factory BootstrapController() => _controller;
+  PaletteModel paletteModel = PaletteModel();
 
-  BootstrapController._internal();
+  late ThemeData themeData;
 
-  BootstrapModel splashScreenModel =
-      BootstrapModel(useMaterial3: true, useLightMode: true, colorSelected: 0);
+  ThemeData updateTheme(int colorIndex, bool useMaterial3, bool useLightMode) {
+    return ThemeData(
+      colorSchemeSeed: paletteModel.getColors()[colorSelected],
+      useMaterial3: useMaterial3,
+      brightness: useLightMode ? Brightness.light : Brightness.dark,
+    );
+  }
+
+  void handleBrightnessChange() {
+    useLightMode = !useLightMode;
+    themeData = updateTheme(colorSelected, useMaterial3, useLightMode);
+  }
+
+  void handleMaterialVersionChange() {
+    useMaterial3 = !useMaterial3;
+    themeData = updateTheme(colorSelected, useMaterial3, useLightMode);
+  }
+
+  void handleColorSelect(int value) {
+    colorSelected = value;
+    themeData = updateTheme(colorSelected, useMaterial3, useLightMode);
+  }
 }
