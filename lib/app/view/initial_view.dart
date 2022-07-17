@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../bootstrap.dart';
+import '../component/appbar_component.dart';
 
 class InitialView extends StatefulWidget {
   const InitialView({Key? key}) : super(key: key);
@@ -10,9 +11,12 @@ class InitialView extends StatefulWidget {
 }
 
 class InitialViewState extends State<InitialView> {
+  SizedBox _divider() => const SizedBox(height: 12);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const AppBarComponent().createAppBar(context),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -28,16 +32,14 @@ class InitialViewState extends State<InitialView> {
                   fontSize: 24,
                 ),
               ),
-              const SizedBox(
-                height: 12,
-              ),
+              _divider(),
               ElevatedButton(
                 onPressed: () {
                   context
                       .findAncestorStateOfType<BootstrapState>()
                       ?.handleBrightnessChange();
                 },
-                child: const Text('Change Theme'),
+                child: const Text('Change Theme Mode'),
               ),
             ],
           ),

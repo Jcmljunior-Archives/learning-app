@@ -17,15 +17,23 @@ class BootstrapState extends State<Bootstrap> {
   @override
   initState() {
     super.initState();
+
+    // Inicialização de tema.
     updateTheme(
       _controller.colorSelected,
       _controller.useMaterial3,
       _controller.useLightMode,
     );
+
+    // print(SchedulerBinding.instance.window.platformBrightness);
   }
 
   bool getUseLightMode() {
     return _controller.useLightMode;
+  }
+
+  int getColorSelected() {
+    return _controller.colorSelected;
   }
 
   void updateTheme(int colorIndex, bool useMaterial3, bool useLightMode) {
@@ -64,7 +72,7 @@ class BootstrapState extends State<Bootstrap> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      themeMode: _controller.useLightMode ? ThemeMode.light : ThemeMode.dark,
+      themeMode: getUseLightMode() ? ThemeMode.light : ThemeMode.dark,
       theme: _controller.themeData,
       initialRoute: '/',
       routes: _getAllRoutes(),
