@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../bootstrap.dart';
 import '../component/appbar_component.dart';
+import '../controller/initial_controller.dart';
 
 class InitialView extends StatefulWidget {
   const InitialView({Key? key}) : super(key: key);
@@ -11,7 +11,19 @@ class InitialView extends StatefulWidget {
 }
 
 class InitialViewState extends State<InitialView> {
-  SizedBox _divider() => const SizedBox(height: 12);
+  final InitialController _controller = InitialController();
+
+  void handleIncrement() {
+    setState(() {
+      _controller.setIncrement();
+    });
+  }
+
+  void handleDecrement() {
+    setState(() {
+      _controller.setDecrement();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +38,30 @@ class InitialViewState extends State<InitialView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Text('You have pushed the button this many times:'),
-              const Text(
-                '0',
-                style: TextStyle(
+              Text(
+                '${_controller.count}',
+                style: const TextStyle(
                   fontSize: 24,
                 ),
               ),
-              _divider(),
-              ElevatedButton(
-                onPressed: () {
-                  context
-                      .findAncestorStateOfType<BootstrapState>()
-                      ?.handleBrightnessChange();
-                },
-                child: const Text('Change Theme Mode'),
-              ),
+              const SizedBox(height: 12),
+              Row(
+                children: <Widget>[
+                  ElevatedButton(
+                    onPressed: () {
+                      handleIncrement();
+                    },
+                    child: const Text('Incrementar'),
+                  ),
+                  const SizedBox(width: 6),
+                  ElevatedButton(
+                    onPressed: () {
+                      handleDecrement();
+                    },
+                    child: const Text('Decrementar'),
+                  ),
+                ],
+              )
             ],
           ),
         ],

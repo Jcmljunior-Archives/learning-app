@@ -5,7 +5,7 @@ import 'view/splash_screen_view.dart';
 import 'view/initial_view.dart';
 
 class Bootstrap extends StatefulWidget {
-  const Bootstrap({Key? key}) : super(key: key);
+  const Bootstrap({super.key});
 
   @override
   State<StatefulWidget> createState() => BootstrapState();
@@ -24,8 +24,6 @@ class BootstrapState extends State<Bootstrap> {
       _controller.useMaterial3,
       _controller.useLightMode,
     );
-
-    // print(SchedulerBinding.instance.window.platformBrightness);
   }
 
   bool getUseLightMode() {
