@@ -61,7 +61,7 @@ class BootstrapState extends State<Bootstrap> {
     });
   }
 
-  Map<String, WidgetBuilder> _getAllRoutes() {
+  Map<String, WidgetBuilder> getAllRoutes() {
     return <String, WidgetBuilder>{
       '/': (BuildContext context) => const SplashScreenView(),
       '/initial': (BuildContext context) => const InitialView(),
@@ -75,7 +75,7 @@ class BootstrapState extends State<Bootstrap> {
       themeMode: getUseLightMode() ? ThemeMode.light : ThemeMode.dark,
       theme: _controller.themeData,
       initialRoute: '/',
-      routes: _getAllRoutes(),
+      routes: getAllRoutes(),
     );
   }
 }

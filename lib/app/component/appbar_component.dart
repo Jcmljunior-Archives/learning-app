@@ -4,15 +4,30 @@ import '../bootstrap.dart';
 import '../model/palette_model.dart';
 
 class AppBarComponent extends StatelessWidget {
-  const AppBarComponent({Key? key}) : super(key: key);
+  const AppBarComponent({super.key});
 
-  Icon handleBrightnessIcon(BuildContext context) {
+  Icon getBrightnessIcon(BuildContext context) {
     return context
                 .findAncestorStateOfType<BootstrapState>()
                 ?.getUseLightMode() ==
             true
         ? const Icon(Icons.wb_sunny_outlined)
         : const Icon(Icons.wb_sunny);
+  }
+
+  Icon getPaletteIcon(BuildContext context, int index) {
+    return context
+                .findAncestorStateOfType<BootstrapState>()
+                ?.getColorSelected() ==
+            index
+        ? Icon(
+            Icons.color_lens,
+            color: PaletteModel.colorItems.elementAt(index),
+          )
+        : Icon(
+            Icons.color_lens_outlined,
+            color: PaletteModel.colorItems.elementAt(index),
+          );
   }
 
   PreferredSizeWidget createAppBar(BuildContext context) {
@@ -27,7 +42,7 @@ class AppBarComponent extends StatelessWidget {
                 .findAncestorStateOfType<BootstrapState>()
                 ?.handleBrightnessChange();
           },
-          icon: handleBrightnessIcon(context),
+          icon: getBrightnessIcon(context),
         ),
         PopupMenuButton(
           position: PopupMenuPosition.under,
@@ -43,15 +58,7 @@ class AppBarComponent extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: Icon(
-                        index ==
-                                context
-                                    .findAncestorStateOfType<BootstrapState>()
-                                    ?.getColorSelected()
-                            ? Icons.color_lens
-                            : Icons.color_lens_outlined,
-                        color: PaletteModel.colorItems.elementAt(index),
-                      ),
+                      child: getPaletteIcon(context, index),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
